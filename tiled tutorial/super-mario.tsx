@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.5" tiledversion="1.6.0" name="super-mario" tilewidth="16" tileheight="16" tilecount="44" columns="11">
- <image source="../phaser tutorial/phaser3-tutorial-src/assets/super-mario.png" width="176" height="64"/>
+ <image source="../phaser tutorials/integrate json tiled map tutorial/assets/super-mario.png" width="176" height="64"/>
  <tile id="13">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0.272727" y="0.272727" width="15.6364" height="15.5455"/>
