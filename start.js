@@ -3,6 +3,7 @@
 	var player;
 	var map;
 	var cursors;
+	var exits;
 
 var Start = new Phaser.Class({
     Extends: Phaser.Scene,
@@ -13,6 +14,7 @@ var Start = new Phaser.Class({
 
     preload: function() {
         this.load.tilemapTiledJSON('Start', 'assets/Start.JSON');
+		this.load.image('exit', 'assets/exit.png');
 		this.load.image('sky', 'assets/tilesetOpenGameBackground.png');
 		this.load.image('Backgrounds', 'assets/Fore - Jungle Grass.png');
 		this.load.image('Foregrounds', 'assets/plates.png');
@@ -30,9 +32,15 @@ var Start = new Phaser.Class({
 		var stuffLayer = map.createLayer('Stuff', foregroundTiles);
 		hillLayer.setCollisionByExclusion(-1, true);
 		
+		exits = this.physics.add.group({
+        allowGravity: false
+		});
+		exits.create(200, 312, 'exit');
+		exits.setVisible(false);
+		
 		cursors = this.input.keyboard.createCursorKeys();
 		
-		player = this.physics.add.sprite(32, 32, 'blob');
+		player = this.physics.add.sprite(40, 80, 'blob');
 		
 		player.setBounce(0.2);
 		player.setCollideWorldBounds(true);
@@ -40,6 +48,7 @@ var Start = new Phaser.Class({
 		player.body.setGravityY(300);
 		
 		this.physics.add.collider(player, hillLayer);
+		this.physics.add.collider(player, exits);
 		
 		this.cameras.main.setBounds(0,0, bg.displayWidth, bg.displayHeight);
 		this.cameras.main.startFollow(player);
@@ -71,13 +80,8 @@ var Start = new Phaser.Class({
 			frameRate: 8,
 			repeat: -1
 		});
-		/*this.time.addEvent({
-        delay: 5000,
-        loop: false,
-        callback: () => {
-            this.scene.start("Level1");
-        }
-		})*/
+
+		this.physics.add.collider(player, exits, changeScene, null, this);
     },
 	
     update: function() {
@@ -93,6 +97,10 @@ var Start = new Phaser.Class({
 
 			player.anims.play('right', true);
 		}
+		else if (cursors.shift.isDown)
+		{
+			this.scene.start("Level1")
+		}
 		else
 		{
 			player.setVelocityX(0);
@@ -100,7 +108,7 @@ var Start = new Phaser.Class({
 			player.anims.play('idle', true);
 		}
 
-		if (cursors.up.isDown && player.body.onFloor())
+		if ((cursors.up.isDown || cursors.space.isDown) && player.body.onFloor())
 		{
 			player.setVelocityY(-240);
 		}
