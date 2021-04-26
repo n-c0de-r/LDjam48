@@ -1,37 +1,39 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!doctype html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8" />
+    <title>Goop's Adventure</title>
     <script src="//cdn.jsdelivr.net/npm/phaser@3.54.0/dist/phaser.js"></script>
+	<script src="start.js"></script>
+    <script src="Level1.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
 
-    <script type="text/javascript">
-		var config = {
-			type: Phaser.AUTO,
-			width: 1280,
-			height: 720,
-			scene: {
-				preload: preload,
-				create: create,
-				update: update
+<script type="text/javascript">
+
+    const config = {
+        type: Phaser.AUTO,
+        width: 320,
+        height: 320,
+		zoom: 4,
+		physics: {
+			default: 'arcade',
+			arcade: {
+				gravity: { y: 300 },
+				debug: false
 			}
-		};
-
-		var game = new Phaser.Game(config);
+		},
+        scene: [Start, Level1]
+    };
 	
-		function preload ()
-		{
-		}
-
-		function create ()
-		{
-		}
-
-		function update ()
-		{
-		}
-	
-    </script>
+	const game = new Phaser.Game(config);
+	function changeScene() {this.scene.start("Level1");}
+</script>
 
 </body>
 </html>
