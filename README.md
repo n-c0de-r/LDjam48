@@ -9,9 +9,6 @@ This was our first enrty at the LDjam. We did this just for fun, no big plans we
 
 As total beginners, and with almost no special preparation before at all, we did not finish much, but learned a lot. The game was supposed to be a simple platfromer with some terrain-related movement mechanics. While searching for assets we found this little slime sprite and it gave us some ideas. It’s totally unfinished, has only two demo levels (switch with SHIFT KEY), and no sound so far.
 
-### Sadly, the second level somehow got lost, and therefore the whole project won't load at all.
-### All that is left are the screenshots.
-
 We will come back again, and might even continue to work on this very same project in the meantime.
 
 SOURCES All assets were taken from OpenGameArt.org. We modified all of them to fit our needs.
